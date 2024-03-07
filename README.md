@@ -46,7 +46,7 @@ async function greet(){
     - tauri-build [RUST]: 1.5.1
     - wry [RUST]: 0.24.7
     - tao [RUST]: 0.16.7
-    - @tauri-apps/api [NPM]: 1.0.0 (outdated, latest: 1.5.3)
+    - @tauri-apps/api [NPM]: 1.5.3
     - @tauri-apps/cli [NPM]: 1.5.10
 
 [-] App
