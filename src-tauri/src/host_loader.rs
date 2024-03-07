@@ -32,7 +32,7 @@ unsafe extern "system" fn copy_to_c_string(ptr: *const u16, length: i32) -> *mut
     c_string.into_raw()
 }
 
-pub fn run_method() -> String {
+pub fn run_method_utf8(string_data: &str) -> String {
     let instance = get_instance();
 
     let set_copy_to_c_string = instance
@@ -43,15 +43,15 @@ pub fn run_method() -> String {
 
     set_copy_to_c_string(copy_to_c_string);
 
-    let get_name = instance
-        .get_function_with_unmanaged_callers_only::<fn() -> *mut c_char>(
+    let handler_utf8 = instance
+        .get_function_with_unmanaged_callers_only::<fn(text_ptr: *const u8, text_length: i32) -> *mut c_char>(
             pdcstr!("TauriIPC.CString, TauriIPC"),
-            pdcstr!("GetNameAsCString"),
+            pdcstr!("runUTF8"),
         )
         .unwrap();
 
-    let name_ptr = get_name();
-    let name = unsafe { CString::from_raw(name_ptr) };
+    let ptr_string = handler_utf8(string_data.as_ptr(), string_data.len() as i32);
+    let data = unsafe { CString::from_raw(ptr_string) };
 
-    format!("{}", name.to_string_lossy())
+    format!("{}", data.to_string_lossy())
 }

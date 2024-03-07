@@ -6,8 +6,8 @@ mod host_loader;
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
 fn greet(name: &str) -> String {
-    let stringFromDLL = host_loader::run_method();
-    format!("{}", stringFromDLL)
+    let returned_string_utf8 = host_loader::run_method_utf8(name);
+    format!("{}", returned_string_utf8)
 }
 
 fn main() {

@@ -1,15 +1,24 @@
 ﻿namespace TestApp {
     public class Main {
-        public static string getStringFromFile() {
+        public static string login(string? name) {
             var currentPath = Directory.GetCurrentDirectory();
             var filePath = Path.Combine(currentPath, "Test.txt");
 
-            if (!File.Exists(filePath)) {
-                File.Create(filePath).Close();
-                File.WriteAllText(filePath, "This is an example text from this file");
+            if (name == null && File.Exists(filePath)) {
+                var txtLogin = File.ReadAllText(filePath);
+                var loginName = txtLogin.Substring("Last login: ".Length);
+
+                return $"Loged as {loginName}";
             }
 
-            return File.ReadAllText(filePath);
+            if (name == null) return "Wops... Not loged in";
+
+            if (!File.Exists(filePath)) {
+                File.Create(filePath).Close();
+                File.WriteAllText(filePath, $"Last login: {name}");
+            }
+
+            return $"Welcome back {name}";
         }
     }
 }
