@@ -30,5 +30,5 @@ async function greet(){
 
 ## References
 
-- [Tauri](https://tauri.app)https://tauri.app
-- [netcorehost](https://github.com/OpenByteDev/netcorehost)https://github.com/OpenByteDev/netcorehost
+- [Tauri](https://tauri.app)
+- [netcorehost](https://github.com/OpenByteDev/netcorehost)
