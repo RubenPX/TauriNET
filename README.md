@@ -1,4 +1,4 @@
-# Tauri + Typescript + C#
+# [Tauri](https://tauri.app) + [Typescript](https://www.typescriptlang.org) + [C#](https://dotnet.microsoft.com/languages/csharp)
 
 This template should help get you started developing with Tauri, .NET and TypeScript in Vite. 
 
@@ -61,9 +61,8 @@ async function greet(){
     - bundler: Vite
 ```
 
-Latest working example: [Download](https://github.com/RubenPX/TauriNET/releases/download/0.1.3/TauriNET_example.zip)
+Latest working example: [Download](https://github.com/RubenPX/TauriNET/releases/download/0.1.4/TauriNET_example.zip)
 
 ## References
 
-- [Tauri](https://tauri.app)
-- [netcorehost](https://github.com/OpenByteDev/netcorehost)
+- [netcorehost by OpenByteDev](https://github.com/OpenByteDev/netcorehost)
