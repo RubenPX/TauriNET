@@ -2,6 +2,8 @@
 
 This template should help get you started developing with Tauri, .NET and TypeScript in Vite. 
 
+Latest working example: https://github.com/RubenPX/TauriNET/releases/download/0.1.2/build.zip
+
 ## TODOS
 
 - [X] Invoke from Tauri to NetHostFX
