@@ -9,6 +9,10 @@ This template should help get you started developing with Tauri, .NET and TypeSc
 - [ ] Call Tauri code from C#
 - [ ] Hide exposed dlls to avoid deobfuscation ([Embed files](https://tauri.app/v1/guides/building/resources/))
 
+## Debuging
+
+You can debug .net dll [ataching VisualStudio to process](https://learn.microsoft.com/en-us/visualstudio/debugger/attach-to-running-processes-with-the-visual-studio-debugger)
+
 ## How it works
 
 You can replace frontend as you want
