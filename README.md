@@ -11,7 +11,7 @@ This template should help get you started developing with Tauri, .NET and TypeSc
 
 ## Debuging
 
-You can debug .net dll [ataching VisualStudio to process](https://learn.microsoft.com/en-us/visualstudio/debugger/attach-to-running-processes-with-the-visual-studio-debugger)
+You can debug .net dll [ataching VisualStudio to process](https://learn.microsoft.com/en-us/visualstudio/debugger/attach-to-running-processes-with-the-visual-studio-debugger) to loaded tauri app
 
 ## How it works
 
