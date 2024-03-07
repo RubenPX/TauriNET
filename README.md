@@ -65,5 +65,4 @@ Latest working example: [Download](https://github.com/RubenPX/TauriNET/releases/
 
 ## References
 
-- [Tauri](https://tauri.app)
-- [netcorehost](https://github.com/OpenByteDev/netcorehost)
+- [netcorehost by OpenByteDev](https://github.com/OpenByteDev/netcorehost)
