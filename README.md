@@ -1,30 +1,7 @@
-# Tauri + Svelte + Typescript + C#
+# Tauri + Vanilla TS
 
-This template should help get you started developing with Tauri, Svelte and TypeScript in Vite. 
+This template should help get you started developing with Tauri in vanilla HTML, CSS and Typescript.
 
-This dll can talk with NetHostFX apps
+## Recommended IDE Setup
 
-## TODOS
-
-- [X] Invoke from Tauri to NetHostFX
-- [ ] Allow Tauri pass to C# String parameters
-- [ ] Allow to send & parse JSON Data betwen processes
-
-## Extra
-
-You can replace frontend as you want
-
-To invoke NetHost code, you need install tauri API and run this code
-
-```javascript
-import { invoke } from "@tauri-apps/api/tauri"
-
-let name = "";
-let greetMsg = ""
-
-async function greet(){
-  // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-  greetMsg = await invoke("greet", { name })
-}
-```
-
+- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
