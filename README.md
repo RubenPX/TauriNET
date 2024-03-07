@@ -11,6 +11,7 @@ This dll can talk with NetHostFX apps
 - [X] Invoke from Tauri to NetHostFX
 - [ ] Allow Tauri pass to C# String parameters
 - [ ] Allow to send & parse JSON Data betwen processes
+- [ ] Maybe in future can hide C# code using tauri ([Tauri Security Module](https://tauri.app/v1/references/architecture/security/))
 
 ## Extra
 
