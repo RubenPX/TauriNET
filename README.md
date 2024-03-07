@@ -4,7 +4,7 @@ This template should help get you started developing with Tauri, Svelte and Type
 
 This dll can talk with NetHostFX apps
 
-Latest running example: https://github.com/RubenPX/TauriNET/releases/download/0.1.1/TauriNET_Example.zip
+[Latest running example](https://github.com/RubenPX/TauriNET/releases/download/0.1.1/TauriNET_Example.zip)
 
 ## TODOS
 
