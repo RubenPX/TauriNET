@@ -61,7 +61,7 @@ async function greet(){
     - bundler: Vite
 ```
 
-Latest working example: [Download](https://github.com/RubenPX/TauriNET/releases/download/0.1.3/TauriNET_example.zip)
+Latest working example: [Download](https://github.com/RubenPX/TauriNET/releases/download/0.1.4/TauriNET_example.zip)
 
 ## References
 
