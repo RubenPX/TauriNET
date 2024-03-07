@@ -18,7 +18,7 @@ lazy_static! {
     };
 }
 
-fn get_instance() -> &'static AssemblyDelegateLoader {
+pub fn get_instance() -> &'static AssemblyDelegateLoader {
     &ASM
 }
 
@@ -32,13 +32,15 @@ unsafe extern "system" fn copy_to_c_string(ptr: *const u16, length: i32) -> *mut
     c_string.into_raw()
 }
 
-pub fn run_method() {
+pub fn run_method() -> String {
     let instance = get_instance();
 
-    let set_copy_to_c_string = instance.get_function_with_unmanaged_callers_only::<fn(f: unsafe extern "system" fn(*const u16, i32) -> *mut c_char)>(
-        pdcstr!("TauriIPC.CString, TauriIPC"),
-        pdcstr!("SetCopyToCStringFunctionPtr"),
-    ).unwrap();
+    let set_copy_to_c_string = instance
+        .get_function_with_unmanaged_callers_only::<fn(f: unsafe extern "system" fn(*const u16, i32) -> *mut c_char)>(
+            pdcstr!("TauriIPC.CString, TauriIPC"),
+            pdcstr!("SetCopyToCStringFunctionPtr"),
+        ).unwrap();
+
     set_copy_to_c_string(copy_to_c_string);
 
     let get_name = instance
@@ -50,32 +52,6 @@ pub fn run_method() {
 
     let name_ptr = get_name();
     let name = unsafe { CString::from_raw(name_ptr) };
-    println!("{}", name.to_string_lossy());
+
+    format!("{}", name.to_string_lossy())
 }
-
-// pub fn get_instance() -> i32 {
-//     let hostfxr = nethost::load_hostfxr().unwrap();
-//     let context = hostfxr.initialize_for_runtime_config(pdcstr!("Test.runtimeconfig.json")).unwrap();
-//     let fn_loader = context.get_delegate_loader_for_assembly(pdcstr!("Test.dll")).unwrap();
-//     fn_loader;
-// }
-
-// static dllInstance: Option<HostfxrContext<InitializedForCommandLine>> = None;
-
-// pub fn getInstance() -> i32 {
-//     if (dllInstance.is_none()) {
-//         let hostfxr = nethost::load_hostfxr().unwrap();
-//         dllInstance = hostfxr.initialize_for_dotnet_command_line(pdcstr!("Test.dll")).unwrap()
-//     }
-
-//     let result: i32 = dllInstance.run_app().value();
-
-//     result;
-
-//     // let hello = fn_loader.get_function_with_unmanaged_callers_only::<fn()>(
-//     //     pdcstr!("Test.Program, Test"),
-//     //     pdcstr!("UnmanagedHello"),
-//     // ).unwrap();
-
-//     // hello();
-// }

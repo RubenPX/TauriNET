@@ -6,12 +6,13 @@ mod host_loader;
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
 fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
+    let stringFromDLL = host_loader::run_method();
+    format!("{}", stringFromDLL)
 }
 
 fn main() {
-    // Obtén una instancia única del singleton
-    let singleton = host_loader::run_method();
+    // Precarga el DLL de NetHost
+    host_loader::get_instance();
 
     // Run tauri
     tauri::Builder::default()
