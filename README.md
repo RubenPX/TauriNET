@@ -5,10 +5,12 @@ This template should help get you started developing with Tauri, .NET and TypeSc
 Latest working example: https://github.com/RubenPX/TauriNET/releases/download/0.1.2/build.zip
 
 ## TODOS
-
-- [X] Invoke from Tauri to NetHostFX
-- [ ] Allow Tauri pass to C# String parameters
-- [ ] Allow to send & parse JSON Data betwen processes
+- [X] Call C# code from Tauri
+- [ ] Call Tauri code from C#
+- [ ] Call C# code from Tauri and return a string
+- [ ] Call C# code from tauri with parameters
+- [ ] Call C# code from tauri with parameters and return string
+- [ ] Allow comunication betwen JSON data
 
 ## How it works
 
