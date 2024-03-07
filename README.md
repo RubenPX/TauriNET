@@ -5,7 +5,7 @@ This template should help get you started developing with Tauri, .NET and TypeSc
 ## TODOS
 - [X] Call C# code from Tauri
 - [X] Call C# code from tauri with parameters and return string
-- [ ] Allow comunication betwen JSON data
+- [X] Allow comunication betwen JSON data
 - [ ] Call Tauri code from C#
 - [ ] Hide exposed dlls to avoid deobfuscation ([Embed files](https://tauri.app/v1/guides/building/resources/))
 
