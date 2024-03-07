@@ -6,9 +6,7 @@ Latest working example: https://github.com/RubenPX/TauriNET/releases/download/0.
 
 ## TODOS
 - [X] Call C# code from Tauri
-- [ ] Call C# code from Tauri and return a string
-- [ ] Call C# code from tauri with parameters
-- [ ] Call C# code from tauri with parameters and return string
+- [X] Call C# code from tauri with parameters and return string
 - [ ] Allow comunication betwen JSON data
 - [ ] Call Tauri code from C#
 - [ ] Hide exposed dlls to avoid deobfuscation ([Embed files](https://tauri.app/v1/guides/building/resources/))
