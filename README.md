@@ -10,7 +10,7 @@ Latest working example: https://github.com/RubenPX/TauriNET/releases/download/0.
 - [ ] Allow Tauri pass to C# String parameters
 - [ ] Allow to send & parse JSON Data betwen processes
 
-## Extra
+## How it works
 
 You can replace frontend as you want
 
@@ -28,3 +28,7 @@ async function greet(){
 }
 ```
 
+## References
+
+- [Tauri](https://tauri.app)https://tauri.app
+- [netcorehost](https://github.com/OpenByteDev/netcorehost)https://github.com/OpenByteDev/netcorehost
