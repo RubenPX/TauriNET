@@ -19,7 +19,7 @@ You can debug .net dll [ataching VisualStudio to process](https://learn.microsof
 
 You can replace frontend as you want
 
-To invoke NetHost code, you need install tauri API and run this code
+To invoke NetHost code, you need install [tauri API](https://www.npmjs.com/package/@tauri-apps/api) and run this code (It's an example)
 
 ```javascript
 import { invoke } from "@tauri-apps/api/tauri"
