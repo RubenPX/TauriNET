@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Reflection;
 using TauriComunication.Route;
 
 namespace TauriComunication {
@@ -7,7 +8,7 @@ namespace TauriComunication {
 
         private readonly PluginInfo[] plugins;
 
-        public PluginManager() {
+        private PluginManager() {
             this.plugins = this.loadPluginsRoutes().ToArray();
         }
 
@@ -35,15 +36,21 @@ namespace TauriComunication {
             return plugins;
         }
 
-        private RouteResponse handleRoute(RouteRequest routeRequest) {
+        internal RouteResponse handleRoute(RouteRequest routeRequest) {
             if (routeRequest == null) return new RouteResponse() { error = "Object RouteRequest is required" };
             if (routeRequest.id == null) return new RouteResponse() { error = "string parameter id is required" };
             if (routeRequest.plugin == null) return new RouteResponse() { error = "string parameter plugin is required" };
             if (routeRequest.method == null) return new RouteResponse() { error = "string parameter method is required" };
 
-            // TODO: @RubenPX
+            PluginInfo? foundPlugin = this.plugins.Where(x => x.PluginName == routeRequest.plugin).First();
+            if (foundPlugin == null) return new RouteResponse() { error = $"Plugin {routeRequest.plugin} not foundPlugin..." };
 
-            return new RouteResponse() { error = "OK! ;)" };
+            MethodInfo? foundMethod = foundPlugin.methods.Where(m => m.Name == routeRequest.method).First();
+
+			RouteResponse? response = (RouteResponse?)foundMethod.Invoke(null, [routeRequest]);
+            if (response == null) return new RouteResponse();
+
+            return response;
         }
 
         /// <summary>
@@ -52,13 +59,14 @@ namespace TauriComunication {
         /// <param name="inputData"></param>
         /// <returns></returns>
         internal static string processRequest(string? inputData) {
-            if (inputData != null || inputData == "") return JsonConvert.SerializeObject(new RouteResponse() { error = "Input is empty..." });
+            if (inputData is not null or "") return JsonConvert.SerializeObject(new RouteResponse() { error = "Input is empty..." });
 
             RouteRequest request = JsonConvert.DeserializeObject<RouteRequest>(inputData);
 
             if (instance == null) instance = new PluginManager();
+			RouteResponse response = instance.handleRoute(request);
 
-            return null;
+            return JsonConvert.SerializeObject(response);
         }
     }
 }

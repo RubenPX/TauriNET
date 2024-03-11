@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TestApp\TestApp.csproj" />
+    <ProjectReference Include="..\TauriComunication\TauriComunication.csproj" />
   </ItemGroup>
 
 </Project>
