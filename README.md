@@ -21,15 +21,42 @@ You can replace frontend as you want
 
 To invoke NetHost code, you need install [tauri API](https://www.npmjs.com/package/@tauri-apps/api) and run this code (It's an example)
 
+> invocation in clientside
 ```javascript
-import { invoke } from "@tauri-apps/api/tauri"
+import { TauriLib } from "./TauriComunication";
 
-let name = "";
-let greetMsg = ""
+async function login(user: string): Promise<string | null> {
+    let userData = {user: user, pass: "Hmm..."}
 
-async function greet(){
-  // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-  greetMsg = await invoke("greet", { name })
+    try {
+      return await TauriLib.invokePlugin<string>({ plugin: "TestApp", method: "login", data: userData });
+    } catch (error) {
+      return "ERR: " + error;
+    }
+}
+
+let message = await login("RubenPX")
+```
+
+> invocation in backend
+```C#
+[RouteMethod] // <-- This is required
+public static RouteResponse login(RouteRequest request, RouteResponse response) {
+  User? loginInfo = null;
+
+  if (request.data != null) {
+    try {
+      loginInfo = Utils.ParseObject<User>(request.data);
+    } catch (Exception ex) {
+      return response.Error($"Failed to parse JSON User object: {ex.Message}");
+    }
+  }
+
+  if (loginInfo == null || loginInfo.user == "" || loginInfo.user == null) {
+    return response.Error("Woops... User is empty");
+  }
+
+  return response.Ok($"Loged in {loginInfo.user}");
 }
 ```
 
