@@ -30,7 +30,7 @@ namespace TauriComunication {
             this.PluginName = assembly.GetName().Name;
 
 			AppDomain.CurrentDomain.AssemblyResolve += (object? sender, ResolveEventArgs args) => AssemblyDependency.AssemblyResolve(sender, args, this.PluginName);
-            Debugger.Launch();
+            // Debugger.Launch();
 
 			Console.WriteLine($"Loaded dll {Path.GetFileNameWithoutExtension(dllPath)}. Name: {PluginName}");
 
