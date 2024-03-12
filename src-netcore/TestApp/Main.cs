@@ -1,20 +1,18 @@
-﻿using Newtonsoft.Json.Linq;
-using System.Text.Json;
-using TauriComunication;
+﻿using TauriComunication;
 using TauriComunication.Route;
 
 namespace TestApp {
-    public static class Main {
+	public static class Main {
 
-        class User {
-            public string user { get; set; }
-            public string pass {  get; set; }
-        }
+		class User {
+			public string user { get; set; }
+			public string pass { get; set; }
+		}
 
-        [RouteMethod]
-        public static RouteResponse login(RouteRequest request, RouteResponse response) {
+		[RouteMethod]
+		public static RouteResponse login(RouteRequest request, RouteResponse response) {
 			User? loginInfo = null;
-            
+
 			if (request.data != null) {
 				try {
 					loginInfo = Utils.ParseObject<User>(request.data);
@@ -42,5 +40,5 @@ namespace TestApp {
 
 			return response.Ok($"Loged in {loginInfo.user}");
 		}
-    }
+	}
 }
