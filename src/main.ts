@@ -1,27 +1,29 @@
-import { invoke } from "@tauri-apps/api/tauri";
+import { TauriLib } from "./TauriComunication";
 
 let greetInputEl: HTMLInputElement | null;
 let greetMsgEl: HTMLElement | null;
 
-async function greet() {
-  if (greetMsgEl && greetInputEl) {
+async function greet(user: string) {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    let userData = {
-      user: greetInputEl.value,
-      pass: "Hmm..."
+    let userData = {user: user, pass: "Hmm..."}
+
+    let response = await TauriLib.invokePlugin<string>({ plugin: "TestApp", method: "login", data: userData });
+    console.log(response);
+
+    if (response.data) {
+      return response.data;
+    } else if (response.error) {
+      return "ERR: " + response.error;
     }
-    
-    greetMsgEl.textContent = await invoke("greet", {
-      data: JSON.stringify(userData),
-    });
-  }
+
+    return JSON.stringify(response)
 }
 
 window.addEventListener("DOMContentLoaded", () => {
   greetInputEl = document.querySelector("#greet-input");
   greetMsgEl = document.querySelector("#greet-msg");
-  document.querySelector("#greet-form")?.addEventListener("submit", (e) => {
+  document.querySelector("#greet-form")?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    greet();
+    if (greetMsgEl) greetMsgEl.innerHTML = await greet(greetInputEl?.value ?? "");
   });
 });

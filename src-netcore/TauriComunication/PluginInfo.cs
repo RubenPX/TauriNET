@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,26 +16,46 @@ namespace TauriComunication {
 
         public string PluginName { get; private set; }
 
-        public PluginInfo(string dllPath) {
-            this.assembly = Assembly.LoadFrom(dllPath);
-            Console.WriteLine($"Loaded dll {Path.GetFileNameWithoutExtension(dllPath)}");
+		static byte[] loadFile(string filename) {
+			FileStream fs = new FileStream(filename, FileMode.Open);
+			byte[] buffer = new byte[(int)fs.Length];
+			fs.Read(buffer, 0, buffer.Length);
+			fs.Close();
 
+			return buffer;
+		}
+
+		public PluginInfo(string dllPath) {
+            this.assembly = AppDomain.CurrentDomain.Load(loadFile(dllPath));
             this.PluginName = assembly.GetName().Name;
+
+			AppDomain.CurrentDomain.AssemblyResolve += (object? sender, ResolveEventArgs args) => AssemblyDependency.AssemblyResolve(sender, args, this.PluginName);
+            Debugger.Launch();
+
+			Console.WriteLine($"Loaded dll {Path.GetFileNameWithoutExtension(dllPath)}. Name: {PluginName}");
 
             this.types = this.assembly.GetTypes();
 
             foreach (var type in this.types) {
+
+                //Console.WriteLine($"Class: {type.Name}");
+                //foreach (var item in type.GetMethods(BindingFlags.Static | BindingFlags.Public)) {
+                //    string methds = string.Join(',', item.GetParameters().Select(t => $"{t.Name}, {t.ParameterType.FullName}"));
+                //    Console.WriteLine($"Method: {item.Name}, {item.Attributes}, {methds}");
+                //}
+
                 var compatibleMethods = type.GetMethods(BindingFlags.Static | BindingFlags.Public).Where(m => {
                     // Verify custom RouteMethodAttribute atribute
-                    if (m.GetCustomAttribute<RouteMethodAttribute>() != null) return false;
+                    if (m.GetCustomAttribute<RouteMethodAttribute>() == null) return false;
 
                     // Verify parameters
                     ParameterInfo[] ps = m.GetParameters();
-                    if (ps.Length != 1) return false;
-                    if (ps[0].ParameterType != typeof(RouteRequest)) return false;
+                    if (ps.Length != 1 && ps.Length != 2) return false;
+                    if (ps[0].ParameterType.FullName != typeof(RouteRequest).FullName) return false;
+                    if (ps[1] != null && ps[1].ParameterType.FullName != typeof(RouteResponse).FullName) return false;
 
-                    // verify return
-                    if (m.ReturnType != typeof(RouteResponse)) return false;
+					// verify return
+					if (m.ReturnType.FullName != typeof(RouteResponse).FullName) return false;
 
                     return true;
                 }).ToArray();

@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
 	<GenerateRuntimeConfigurationFiles>True</GenerateRuntimeConfigurationFiles>
 	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TauriComunication\TauriComunication.csproj" />

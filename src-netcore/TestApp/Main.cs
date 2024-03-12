@@ -1,6 +1,7 @@
-﻿using System.Diagnostics.Metrics;
+﻿using Newtonsoft.Json.Linq;
 using System.Text.Json;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using TauriComunication;
+using TauriComunication.Route;
 
 namespace TestApp {
     public static class Main {
@@ -10,34 +11,36 @@ namespace TestApp {
             public string pass {  get; set; }
         }
 
-        public static string login(string? jsonDataStr) {
-            User? loginInfo = null;
+        [RouteMethod]
+        public static RouteResponse login(RouteRequest request, RouteResponse response) {
+			User? loginInfo = null;
+            
+			if (request.data != null) {
+				try {
+					loginInfo = Utils.ParseObject<User>(request.data);
+				} catch (Exception ex) {
+					return response.Error($"Failed to parse JSON User object: {ex.Message}");
+				}
+			}
 
-            if (jsonDataStr != null) {
-                try {
-                    loginInfo = (User)JsonSerializer.Deserialize(jsonDataStr!, typeof(User));
-                } catch (Exception ex) {
-                    return $"Failed to parse JSON User object: {ex.Message}";
-                }
-            }
+			var currentPath = Directory.GetCurrentDirectory();
+			var filePath = Path.Combine(currentPath, "Test.txt");
 
-            var currentPath = Directory.GetCurrentDirectory();
-            var filePath = Path.Combine(currentPath, "Test.txt");
+			if (loginInfo == null || loginInfo.user == "" || loginInfo.user == null) {
+				if (File.Exists(filePath)) {
+					var txtLogin = File.ReadAllText(filePath);
+					var loginName = txtLogin.Substring("Last login: ".Length);
 
-            if (loginInfo != null && (loginInfo.user == null || loginInfo.user == "")) {
-                if (File.Exists(filePath)) {
-                    var txtLogin = File.ReadAllText(filePath);
-                    var loginName = txtLogin.Substring("Last login: ".Length);
+					return response.Ok($"Welcome back, {loginName}");
+				}
 
-                    return $"Welcome back, {loginName}";
-                }
+				return response.Ok("Woops... User is not saved");
+			}
 
-                return "Woops... User is not saved";
-            }
+			if (!File.Exists(filePath)) File.Create(filePath).Close();
+			File.WriteAllText(filePath, $"Last login: {loginInfo.user}");
 
-            if (!File.Exists(filePath)) File.Create(filePath).Close();
-            File.WriteAllText(filePath, $"Last login: {loginInfo.user}");
-            return $"Loged in {loginInfo.user}";
-        }
+			return response.Ok($"Loged in {loginInfo.user}");
+		}
     }
 }
