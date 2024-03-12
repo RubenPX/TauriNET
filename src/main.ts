@@ -3,8 +3,7 @@ import { TauriLib } from "./TauriComunication";
 let greetInputEl: HTMLInputElement | null;
 let greetMsgEl: HTMLElement | null;
 
-async function greet(user: string): Promise<string | null> {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+async function login(user: string): Promise<string | null> {
     let userData = {user: user, pass: "Hmm..."}
 
     try {
@@ -19,6 +18,6 @@ window.addEventListener("DOMContentLoaded", () => {
   greetMsgEl = document.querySelector("#greet-msg");
   document.querySelector("#greet-form")?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (greetMsgEl) greetMsgEl.innerHTML = await greet(greetInputEl?.value ?? "") ?? "null";
+    if (greetMsgEl) greetMsgEl.innerHTML = await login(greetInputEl?.value ?? "") ?? "null";
   });
 });
