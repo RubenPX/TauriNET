@@ -48,23 +48,31 @@ let message = await login("RubenPX")
 
 > invocation in backend
 ```C#
-[RouteMethod] // <-- This is required
-public static RouteResponse login(RouteRequest request, RouteResponse response) {
-  User? loginInfo = null;
+public static class Main {
 
-  if (request.data != null) {
-    try {
-      loginInfo = Utils.ParseObject<User>(request.data);
-    } catch (Exception ex) {
-      return response.Error($"Failed to parse JSON User object: {ex.Message}");
-    }
-  }
+   class User {
+      public string user { get; set; }
+      public string pass { get; set; }
+   }
 
-  if (loginInfo == null || loginInfo.user == "" || loginInfo.user == null) {
-    return response.Error("Woops... User is empty");
-  }
+   [RouteMethod] // <-- This is required
+   public static RouteResponse login(RouteRequest request, RouteResponse response) {
+      User? loginInfo = null;
 
-  return response.Ok($"Loged in {loginInfo.user}");
+      if (request.data != null) {
+          try {
+              loginInfo = Utils.ParseObject<User>(request.data);
+          } catch (Exception ex) {
+              return response.Error($"Failed to parse JSON User object: {ex.Message}");
+          }
+      }
+
+      if (loginInfo == null || loginInfo.user == "" || loginInfo.user == null) {
+          return response.Error("Woops... User is empty");
+      }
+
+      return response.Ok($"Loged in {loginInfo.user}");
+   }
 }
 ```
 
