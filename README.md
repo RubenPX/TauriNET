@@ -109,5 +109,8 @@ public static class Main {
 Latest working example: [Download](https://github.com/RubenPX/TauriNET/releases/download/0.1.4/TauriNET_example.zip)
 
 ## References
-
+- [.NET](https://learn.microsoft.com/dotnet/core/introduction)
+- [RustLang](https://www.rust-lang.org/es)
 - [netcorehost by OpenByteDev](https://github.com/OpenByteDev/netcorehost)
+- [Tauri](https://tauri.app)
+- [JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript)
