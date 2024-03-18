@@ -1,6 +1,6 @@
-# [Tauri](https://tauri.app) + [vite](https://vitejs.dev) + [C#](https://dotnet.microsoft.com/languages/csharp)
+# Tauri.NET
 
-This template should help get you started developing with Tauri, .NET and TypeScript in Vite. 
+This template should help get you started developing with [Tauri](https://tauri.app), [.NET](https://dotnet.microsoft.com/es-es/learn/dotnet/what-is-dotnet) and [Vite](https://vitejs.dev). 
 
 ## TODOS
 - [X] Call C# code from Tauri
