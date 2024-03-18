@@ -23,7 +23,7 @@ Comunication betwen framewowrks are transitive and it's defined using [Rust](htt
 
 Rust manage comunication betwen frameworks
 
-## Showme the code
+## Show me the code
 
 You can replace frontend as you want
 
