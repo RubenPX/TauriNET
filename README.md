@@ -17,6 +17,14 @@ You can debug .net dll [ataching VisualStudio to process](https://learn.microsof
 
 ## How it works
 
+![Comunication betwen frameworks](README-assets/Comunication.png)
+
+Comunication betwen framewowrks are transitive and it's defined using [Rust](https://www.rust-lang.org) code.
+
+Rust manage comunication betwen frameworks
+
+## Show me the code
+
 You can replace frontend as you want
 
 To invoke NetHost code, you need install [tauri API](https://www.npmjs.com/package/@tauri-apps/api) and run this code (It's an example)
