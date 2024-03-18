@@ -76,7 +76,7 @@ public static class Main {
 }
 ```
 
-## Example working
+## Working enviroment example
 
 ```yaml
 [✔] Environment
@@ -106,7 +106,7 @@ public static class Main {
     - bundler: Vite
 ```
 
-Latest working example: [Download](https://github.com/RubenPX/TauriNET/releases/download/0.1.4/TauriNET_example.zip)
+Latest working build example: [Download](https://github.com/RubenPX/TauriNET/releases/download/0.1.4/TauriNET_example.zip)
 
 ## References
 - [.NET](https://learn.microsoft.com/dotnet/core/introduction)
