@@ -17,7 +17,7 @@ You can debug .net dll [ataching VisualStudio to process](https://learn.microsof
 
 ## How it works
 
-![Comunication betwen frameworks](README-assets/Comunication.png)
+![Comunication betwen frameworks](README-assets/Comunication.drawio.svg)
 
 Comunication betwen framewowrks are transitive and it's defined using [Rust](https://www.rust-lang.org) code.
 
