@@ -1,4 +1,4 @@
-# [Tauri](https://tauri.app) + [Typescript](https://www.typescriptlang.org) + [C#](https://dotnet.microsoft.com/languages/csharp)
+# [Tauri](https://tauri.app) + [vite](https://vitejs.dev) + [C#](https://dotnet.microsoft.com/languages/csharp)
 
 This template should help get you started developing with Tauri, .NET and TypeScript in Vite. 
 
