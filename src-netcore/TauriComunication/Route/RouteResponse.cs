@@ -7,7 +7,7 @@ public class RouteResponse {
 
     internal RouteResponse() { }
 
-    public RouteResponse Ok(object? data) {
+    public RouteResponse Ok(object? data = null) {
         this.data = data;
         return this;
     }
