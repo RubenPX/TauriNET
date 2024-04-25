@@ -11,13 +11,13 @@ This template should help get you started developing with [Tauri](https://tauri.
 
 ## Debuging
 
-![Debug screenshot](README-assets/DebugScreenshot.png)
+![Debug screenshot](DebugScreenshot.png)
 
 You can debug .net dll [ataching VisualStudio to process](https://learn.microsoft.com/en-us/visualstudio/debugger/attach-to-running-processes-with-the-visual-studio-debugger) to loaded tauri app
 
 ## How it works
 
-![Comunication betwen frameworks](README-assets/Comunication.drawio.svg)
+![Comunication betwen frameworks](Comunication.drawio.svg)
 
 Comunication betwen framewowrks are transitive and it's defined using [Rust](https://www.rust-lang.org) code.
 
