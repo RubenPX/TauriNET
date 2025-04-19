@@ -1,0 +1,1 @@
+dotnet run --project .\prepack-action\prepack-action.csproj && dotnet pack
