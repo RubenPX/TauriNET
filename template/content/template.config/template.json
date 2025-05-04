@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "classifications": [
+        "Tauri.NET"
+    ],
+    "name": "TauriNET App",
+    "identity": "Tauri.NET",
+    "shortName": "tauri-net",
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "sources": [
+        {
+            "exclude": [
+                "**.gitignore",
+                "**/.git/**",
+                "readme.md",
+                "template.config/**",
+                "install*"
+            ]
+        }
+    ],
+    "postActions": [
+        {
+            "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+            "args": {
+                "executable": "dotnet",
+                "args": "run --project .\\setup\\setup.csproj",
+                "redirectStandardOutput": false,
+                "redirectStandardError": false
+            },
+            "manualInstructions": [
+                {
+                    "text": "Run the setup script"
+                }
+            ],
+            "continueOnError": false,
+            "description ": "setup TauriNET project"
+        }
+    ]
+}
