@@ -1,7 +1,7 @@
 > [!warning]
 > This project will be discontinued due tauri will support C# and other languagues in a future.
 >
-> For now, to make a minimal browser API you can use [webview/webview_csharp](https://github.com/webview/webview_csharp). Implements C# at backend can you can use any gramework at forntend using NPM/PNPM/Yarn/etc...
+> For now, to make a minimal browser API you can use [webview/webview_csharp](https://github.com/webview/webview_csharp). Implements C# at backend can you can use any framework at forntend using NPM/PNPM/Yarn/etc...
 >
 > take a a look at this post https://v2.tauri.app/about/philosophy/#polyglots-not-silos
 
